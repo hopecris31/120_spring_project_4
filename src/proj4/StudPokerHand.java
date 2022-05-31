@@ -6,11 +6,12 @@ import java.util.Collections;
 
 public class StudPokerHand implements Hand{
 
-    public final int TARGET_LENGTH = 5;
+    public final int TARGET_LENGTH = 5; // the size of desired hand
 
     public ArrayList<Card> studHand;
     public CommunityCardSet cc;
     public final int STUD_HAND_SIZE = 2;
+    ArrayList<Card> allCards = new ArrayList<>();
 
     public StudPokerHand(CommunityCardSet cc, ArrayList<Card> cardList) {
         ArrayList<Card> cardsCopy = new ArrayList<>();
@@ -48,19 +49,8 @@ public class StudPokerHand implements Hand{
         return thisBest.compareTo(otherBest);
     }
 
-    private ArrayList<PokerHand> getAllFiveCardHands(ArrayList<Card> cards, int targetLength){
-        ArrayList<ArrayList <Card>> allCombos = getAllCombos(cards, targetLength);
-        ArrayList<PokerHand> handCombos = new ArrayList<>();
+    private ArrayList<Card> getAllCards(){ //gets all cards to be used in getAllFiveCardHands
 
-        for(ArrayList<Card> cardList : allCombos){
-            PokerHand hand = new PokerHand(cardList);
-            handCombos.add(hand);
-        }
-        return handCombos;
-    }
-
-    private ArrayList<Card> getAllCards(){
-        ArrayList<Card> allCards = new ArrayList<>();
         for(Card card : this.cc.communityCards){ // do this for when an object contains arraylist "unpack"
             allCards.add(card);
         }
@@ -70,63 +60,54 @@ public class StudPokerHand implements Hand{
         return allCards;
     }
 
-
-    private static ArrayList<ArrayList <Card>> getAllCombos(ArrayList<Card> hand, int targetLength){
+    private static ArrayList<ArrayList<Card>> getAllCombos(ArrayList<Card> allHandCards, int targetLength){
         ArrayList<ArrayList<Card>> allCombos = new ArrayList<>();
+
         if(targetLength == 1){
-            getSingleCombos(hand, allCombos);
+            makeSingleCombo(allHandCards, allCombos); //makes a combo of size 1
         }
-        else if(targetLength == hand.size()){
-            makeOwnCombo(hand, allCombos);
+        else if(targetLength == allHandCards.size()){ // makes a combo of size target length
+            makeOwnCombo(allHandCards, allCombos);
         }
         else{
-            Card firstCard = hand.get(0);
-            ArrayList<Card> rest = new ArrayList<>(hand.subList(1, hand.size()));
-            getCombosWithFirst(rest, targetLength, allCombos, firstCard);
+            Card firstCard = allHandCards.get(0);
+            ArrayList<Card> rest = new ArrayList<>(allHandCards.subList(1, allHandCards.size()));
+            getCombosWithFirst(rest, targetLength, firstCard, allCombos);
             getCombosWithoutFirst(rest, targetLength, allCombos);
         }
         return allCombos;
     }
 
-    private static void getCombosWithoutFirst(ArrayList <Card> rest, int targetLength, ArrayList<ArrayList<Card>> allCombos){
-        ArrayList<ArrayList <Card>> combos = getAllCombos(rest, targetLength);
-        for(ArrayList <Card> combo : combos){
-            allCombos.add(combo);
-        }
+    private static void getCombosWithoutFirst(ArrayList<Card> rest, int targetLength, ArrayList<ArrayList<Card>> allCombos){
+        ArrayList<ArrayList<Card>> combos = getAllCombos(rest, targetLength); // recursive call
+        allCombos.addAll(combos);
     }
 
-    private static void getCombosWithFirst(ArrayList <Card> rest, int targetLength, ArrayList<ArrayList<Card>> allCombos,
-                                           Card cardToAdd){
-
-        ArrayList<ArrayList <Card>> combos = getAllCombos(rest, targetLength-1);
-        for(ArrayList <Card> combo : combos){//add first element back
+    private static void getCombosWithFirst(ArrayList<Card> rest, int targetLength, Card cardToAdd, ArrayList<ArrayList<Card>> allCombos){
+        ArrayList<ArrayList<Card>> combos = getAllCombos(rest, targetLength-1); // recursive call
+        for(ArrayList<Card> combo : combos){
             combo.add(cardToAdd);
         }
-        for(ArrayList <Card> combo : combos){
-            allCombos.add(combo);
-        }
+        allCombos.addAll(combos);
     }
 
-    private static void makeOwnCombo(ArrayList<Card> hand, ArrayList<ArrayList<Card>> allCombos){
-        ArrayList<Card> handCopy = new ArrayList<>();
-        for(Card card : hand){ // copies hand
-            handCopy.add(card);
-        }
-        allCombos.add(handCopy);
-    }
-
-    private static void getSingleCombos(ArrayList<Card> hand, ArrayList<ArrayList<Card>> allCombos){
-        for(Card card : hand){
+    private static void makeSingleCombo(ArrayList<Card> cardList, ArrayList<ArrayList<Card>> allCombos){
+        for(Card card : cardList){
             ArrayList<Card> singleCombo = new ArrayList<>();
             singleCombo.add(card);
             allCombos.add(singleCombo);
         }
     }
 
+    private static void makeOwnCombo(ArrayList<Card> allHandCards, ArrayList<ArrayList<Card>> allCombos){
+        ArrayList<Card> handCardsCopy = new ArrayList<>(allHandCards);
+        allCombos.add(handCardsCopy);
+    }
+
+
     private PokerHand getBestFiveCardHand()
     {
-
-        ArrayList<PokerHand> hands = getAllFiveCardHands(getAllCards(), TARGET_LENGTH);
+        ArrayList<PokerHand> hands = getAllFiveCardHands();
         PokerHand bestSoFar = hands.get(0);
 
         for (int i = 1; i < hands.size(); i++) {
@@ -135,6 +116,18 @@ public class StudPokerHand implements Hand{
             }
         }
         return bestSoFar;
+    }
+
+    private ArrayList<PokerHand> getAllFiveCardHands(){
+        ArrayList<Card> allCards = getAllCards();
+        ArrayList<ArrayList<Card>> allCombos = getAllCombos(allCards, TARGET_LENGTH);
+        ArrayList<PokerHand> handCombos = new ArrayList<>();
+
+        for(ArrayList<Card> cardList : allCombos){
+            PokerHand hand = new PokerHand(cardList);
+            handCombos.add(hand);
+        }
+        return handCombos;
     }
 
 

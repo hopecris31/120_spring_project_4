@@ -27,6 +27,7 @@ public class main {
      */
     public static void playGame() {
         final int HAND_SIZE = 5;
+        final int STUD_HAND_SIZE = 7;
         int correctGuesses = 0;
         boolean game = true;
 
@@ -36,8 +37,10 @@ public class main {
         System.out.println("E1 IF HAND 1 IS BETTER,  2 IF HAND 2 IS BETTER, OR 0 IF ITS A TIE");
 
         while(game && deck.enoughInDeck(HAND_SIZE)){
-            ArrayList<Card> cardList1 = getHandCards(HAND_SIZE, deck);
-            ArrayList<Card> cardList2 = getHandCards(HAND_SIZE, deck);
+
+            ArrayList<Card> communityCards = getHandCards(HAND_SIZE, deck);
+            ArrayList<Card> cardList1 = getHandCards(STUD_HAND_SIZE, deck);
+            ArrayList<Card> cardList2 = getHandCards(STUD_HAND_SIZE, deck);
 
             PokerHand hand1 = new PokerHand(cardList1);
             PokerHand hand2 = new PokerHand(cardList2);

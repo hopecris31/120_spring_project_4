@@ -23,7 +23,7 @@ public class Card {
 
     }
 
-    private static String suitString(int suit){
+    public static String suitString(int suit){
         String suitString;
         if(suit == 0){
             suitString = "Spades";
@@ -40,7 +40,7 @@ public class Card {
         return suitString;
     }
 
-    private static int rankInt(String rank){
+    public static int rankInt(String rank){
         int rankInt;
         if(rank.equals("Jack")){
             rankInt = 11;
@@ -53,6 +53,33 @@ public class Card {
         }
         else if(rank.equals("Ace")){
             rankInt = 14;
+        }
+        else if(rank.equals("ten")){
+            rankInt = 10;
+        }
+        else if(rank.equals("nine")){
+            rankInt = 9;
+        }
+        else if(rank.equals("eight")){
+            rankInt = 8;
+        }
+        else if(rank.equals("seven")){
+            rankInt = 7;
+        }
+        else if(rank.equals("six")){
+            rankInt = 6;
+        }
+        else if(rank.equals("five")){
+            rankInt = 5;
+        }
+        else if(rank.equals("four")){
+            rankInt = 4;
+        }
+        else if(rank.equals("three")){
+            rankInt = 3;
+        }
+        else if(rank.equals("two")){
+            rankInt = 2;
         }
         else{
             rankInt = Integer.parseInt(rank);

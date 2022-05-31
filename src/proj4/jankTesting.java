@@ -8,7 +8,8 @@ public class jankTesting {
         newDeck.shuffle();
         System.out.println(newDeck);
 
-        //Card c3H = new Card();
+        Card card = new Card("Ten", "Clubs");
+        System.out.println(card);
     }
 
 }
