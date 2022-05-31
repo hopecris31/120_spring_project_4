@@ -1,29 +1,32 @@
 package proj4;
 
 import java.util.ArrayList;
+import java.util.Collections;
 
 
-public class StudPokerHand {
+public class StudPokerHand implements Hand{
 
     public final int TARGET_LENGTH = 5;
 
     public ArrayList<Card> studHand;
     public CommunityCardSet cc;
-    public final int HAND_SIZE = 2;
+    public final int STUD_HAND_SIZE = 2;
 
     public StudPokerHand(CommunityCardSet cc, ArrayList<Card> cardList) {
-        this.studHand = new ArrayList<>(cardList);
+        ArrayList<Card> cardsCopy = new ArrayList<>();
+        Collections.copy(cardsCopy, cardList);
+        this.studHand = cardsCopy;
         this.cc = cc;
     }
 
     public void addCard(Card card) {
-        if (this.studHand.size() < HAND_SIZE) {
+        if (this.studHand.size() < STUD_HAND_SIZE) {
             this.studHand.add(card);
         }
     }
 
     public Card getIthCard(int index){
-        if(index > HAND_SIZE -1 || index < 0){
+        if(index > STUD_HAND_SIZE -1 || index < 0){
             return null;
         }
         return this.studHand.get(index);

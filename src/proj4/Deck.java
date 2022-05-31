@@ -102,7 +102,7 @@ public class Deck {
         this.nextToDeal = 0;
     }
 
-    public String toString(){ ///sublist of undealt cards
-        return String.valueOf(this.deck);
+    public String toString(){ //sublist of undealt cards
+        return String.valueOf(this.deck.subList(nextToDeal, deck.size()));
     }
 }

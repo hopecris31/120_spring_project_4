@@ -8,7 +8,7 @@ import java.util.Comparator;
 import java.util.Objects;
 
 
-public class PokerHand {
+public class PokerHand implements Hand{
 
     public final int HAND_SIZE = 5;
     public ArrayList<Card> hand;
@@ -18,7 +18,9 @@ public class PokerHand {
      * @param cardList a list of cards to use for the poker hand
      */
     public PokerHand(ArrayList<Card> cardList) {
-        this.hand = new ArrayList<>(cardList);
+        ArrayList<Card> cardsCopy = new ArrayList<>();
+        Collections.copy(cardsCopy, cardList);
+        this.hand = cardsCopy;
     }
 
     /**
@@ -26,7 +28,7 @@ public class PokerHand {
      * @param card a card to add
      */
     public void addCard(Card card) {
-        if (this.hand.size() < 5) {
+        if (this.hand.size() < HAND_SIZE) {
             this.hand.add(card);
         }
     }

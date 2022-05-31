@@ -14,13 +14,50 @@ public class Card {
      */
     public Card(int rank, int suit){
         this.rank = rank;
-        this.suit = String.valueOf(suit);
+        this.suit = suitString(suit);
     }
 
     public Card(String rank, String suit){
-        this.rank = Integer.parseInt(rank);
+        this.rank = rankInt(rank); // helper to make royals return the
         this.suit = suit;
 
+    }
+
+    private static String suitString(int suit){
+        String suitString;
+        if(suit == 0){
+            suitString = "Spades";
+        }
+        else if(suit == 1){
+            suitString = "Hearts";
+        }
+        else if(suit == 2){
+            suitString = "Clubs";
+        }
+        else {
+            suitString = "Diamonds";
+        }
+        return suitString;
+    }
+
+    private static int rankInt(String rank){
+        int rankInt;
+        if(rank.equals("Jack")){
+            rankInt = 11;
+        }
+        else if(rank.equals("Queen")){
+            rankInt = 12;
+        }
+        else if(rank.equals("King")){
+            rankInt = 13;
+        }
+        else if(rank.equals("Ace")){
+            rankInt = 14;
+        }
+        else{
+            rankInt = Integer.parseInt(rank);
+        }
+        return rankInt;
     }
 
     /**
