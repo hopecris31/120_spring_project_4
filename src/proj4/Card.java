@@ -2,11 +2,14 @@
  * represents a card object
  */
 package proj4;
+import java.util.HashMap;
+
 
 public class Card {
 
     private int rank;
     private String suit;
+    HashMap<String, Integer> strToInt = textToNumber();
 
 
     /**
@@ -18,9 +21,26 @@ public class Card {
     }
 
     public Card(String rank, String suit){
-        this.rank = rankInt(rank); // helper to make royals return the
+        if(strToInt.containsKey(rank)){ // if the rank is a word, as a string
+            this.rank = strToInt.get(rank);
+        }
+        else{ // if the rank is an int, as a string
+            this.rank = Integer.parseInt(rank);
+        }
         this.suit = suit;
+    }
 
+    public HashMap<String, Integer> textToNumber (){
+        String[] textNumbers = {"two", "three", "four", "five", "six", "seven", "eight", "nine", "ten", "Jack", "Queen", "King", "Ace"};
+        HashMap<String, Integer> textToIntRank = new HashMap<String, Integer>();
+        for(int i = 0; i < textNumbers.length; i++){
+            textToIntRank.put(textNumbers[i], i+2);
+        }
+        return textToIntRank;
+    }
+
+    public int strToInt(String number){
+        return(strToInt.get(number));
     }
 
     public static String suitString(int suit){
@@ -39,53 +59,10 @@ public class Card {
         }
         return suitString;
     }
+//make array of int words and corresponding array of ints, get index of word, then return corresponding int in other list
+    //or could make a hashmap (dictionary)
 
-    public static int rankInt(String rank){
-        int rankInt;
-        if(rank.equals("Jack")){
-            rankInt = 11;
-        }
-        else if(rank.equals("Queen")){
-            rankInt = 12;
-        }
-        else if(rank.equals("King")){
-            rankInt = 13;
-        }
-        else if(rank.equals("Ace")){
-            rankInt = 14;
-        }
-        else if(rank.equals("ten")){
-            rankInt = 10;
-        }
-        else if(rank.equals("nine")){
-            rankInt = 9;
-        }
-        else if(rank.equals("eight")){
-            rankInt = 8;
-        }
-        else if(rank.equals("seven")){
-            rankInt = 7;
-        }
-        else if(rank.equals("six")){
-            rankInt = 6;
-        }
-        else if(rank.equals("five")){
-            rankInt = 5;
-        }
-        else if(rank.equals("four")){
-            rankInt = 4;
-        }
-        else if(rank.equals("three")){
-            rankInt = 3;
-        }
-        else if(rank.equals("two")){
-            rankInt = 2;
-        }
-        else{
-            rankInt = Integer.parseInt(rank);
-        }
-        return rankInt;
-    }
+//for testing: make new string array with all cards as string,
 
     /**
      * returns the rank of the card

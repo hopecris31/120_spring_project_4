@@ -18,8 +18,7 @@ public class PokerHand implements Hand{
      * @param cardList a list of cards to use for the poker hand
      */
     public PokerHand(ArrayList<Card> cardList) {
-        ArrayList<Card> cardsCopy = new ArrayList<>();
-        Collections.copy(cardsCopy, cardList);
+        ArrayList<Card> cardsCopy = new ArrayList<>(cardList);
         this.hand = cardsCopy;
     }
 

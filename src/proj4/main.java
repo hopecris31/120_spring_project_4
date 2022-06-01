@@ -1,4 +1,5 @@
-package proj4; /**
+package proj4;
+/**
  * Main runs the game
  */
 
@@ -34,11 +35,10 @@ public class main {
         Deck deck = new Deck();
         deck.shuffle();
 
-        System.out.println("E1 IF HAND 1 IS BETTER,  2 IF HAND 2 IS BETTER, OR 0 IF ITS A TIE");
+        System.out.println("ENTER 1 IF HAND 1 IS BETTER😤,  2 IF HAND 2 IS BETTER🤩, OR 0 IF ITS A TIE😱");
 
         while(game && deck.enoughInDeck(HAND_SIZE)){
 
-            ArrayList<Card> communityCards = getHandCards(HAND_SIZE, deck);
             ArrayList<Card> cardList1 = getHandCards(STUD_HAND_SIZE, deck);
             ArrayList<Card> cardList2 = getHandCards(STUD_HAND_SIZE, deck);
 
@@ -46,12 +46,12 @@ public class main {
             PokerHand hand2 = new PokerHand(cardList2);
 
             System.out.println(" ");
-            System.out.println("HAND 1: "+ hand1);
-            System.out.println("HAND 2: "+ hand2);
+            System.out.println("🥵HAND 1: "+ hand1);
+            System.out.println("🥶HAND 2: "+ hand2);
             System.out.println(" ");
 
             int correctAnswer = hand1.compareTo(hand2);
-            System.out.println("ENTER YOUR GUESS BELOW: ");
+            System.out.println("⬇️ ENTER YOUR GUESS BELOW ⬇️: ");
             Scanner userAnswer = new Scanner(System.in);
             int userAnswerInt =  userAnswer.nextInt(); // converts user answer from scanner to int, use this in compare
 
@@ -70,14 +70,14 @@ public class main {
                 game = false;
             }
 
-            System.out.println("correct answer: " + "HAND " + correctAnswer + " | your answer: " + "HAND " + userAnswerInt);
+            System.out.println("correct answer🤔😳: " + "HAND " + correctAnswer + " | your answer🤡😵🤮: " + "HAND " + userAnswerInt);
             System.out.println("correct guesses: " + correctGuesses);
 
             if(!game){
-                System.out.println("INCORRECT GUESS, GAME OVER");
+                System.out.println("INCORRECT GUESS, GAME OVER ☠️☠️☠️");
             }
             if(!deck.enoughInDeck(HAND_SIZE) && correctGuesses == 5){
-                System.out.println("YOU WIN, ALL HANDS HAVE BEEN DEALT!");
+                System.out.println("YOU WIN, ALL HANDS HAVE BEEN DEALT!👏🏼👏🏼👏🏼");
             }
         }
     }
