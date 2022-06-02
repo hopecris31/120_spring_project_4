@@ -146,6 +146,11 @@ public class StudPokerHand implements Hand {
         return handCombos;
     }
 
+    /**
+     * checks the equality of a StudPokerHand object
+     * @param other another object to compare
+     * @return True if same object, False if else
+     */
     public boolean equals(StudPokerHand other) {
         if (other == this) {
             return true;

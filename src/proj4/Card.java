@@ -78,6 +78,11 @@ public class Card {
         return this.suit;
     }
 
+    /**
+     * checks the equality of a Card object
+     * @param other another object to compare
+     * @return True if same object, False if else
+     */
     public boolean equals(Card other) {
         if (other == this) {
             return true;

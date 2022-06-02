@@ -262,6 +262,11 @@ public class PokerHand implements Hand{
         return this.compareHighCard(other);
     }
 
+    /**
+     * checks the equality of a PokerHand object
+     * @param other another object to compare
+     * @return True if same object, False if else
+     */
     public boolean equals(PokerHand other) {
         if (other == this) {
             return true;

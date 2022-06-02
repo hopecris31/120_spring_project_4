@@ -13,7 +13,7 @@ public class Deck {
     //ask about "field can be converted to local variable, when i declared private cards up here, moved to createDeck
     private ArrayList<Card> deck;
     private int nextToDeal;
-    public final String[] SUITS_STRING = {"Spades", "Hearts", "Diamonds", "Clubs"};
+    public final String[] SUITS_STRING = {"Spades", "Hearts", "Clubs", "Diamonds"};
     public final String[] RANKS_STRING = {"2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14"};
     public final int[] RANKS_INT = {2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14};
     public final int[] SUITS_INT = {0, 1, 2, 3};
@@ -106,6 +106,11 @@ public class Deck {
         this.nextToDeal = 0;
     }
 
+    /**
+     * checks the equality of a Deck object
+     * @param other another object to compare
+     * @return True if same object, False if else
+     */
     public boolean equals(Deck other) {
         if (other == this) {
             return true;
