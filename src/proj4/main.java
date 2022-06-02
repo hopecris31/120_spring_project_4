@@ -1,7 +1,7 @@
-package proj4;
 /**
  * Main runs the game
  */
+package proj4;
 
 import java.util.ArrayList;
 import java.util.Scanner;

@@ -1,12 +1,13 @@
+/**
+ * represents a deck object
+ */
 package proj4;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.concurrent.ThreadLocalRandom;
 
-/**
- * represents a deck object
- */
+
 
 public class Deck {
     //ask about "field can be converted to local variable, when i declared private cards up here, moved to createDeck
@@ -67,6 +68,10 @@ public class Deck {
         return this.size() >= handSize;
     }
 
+    /**
+     * checks to see if all the cards in the deck have been dealt
+     * @return True if deck is empty, False if not
+     */
     public boolean isEmpty(){
         return this.nextToDeal != this.deck.size();
     }

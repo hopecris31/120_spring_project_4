@@ -13,13 +13,20 @@ public class Card {
 
 
     /**
-     * constructor, initializes the card
+     * constructor, initializes the card with int parameters
+     * @param rank a card rank, as an int
+     * @param suit a card suit, as an int
      */
     public Card(int rank, int suit){
         this.rank = rank;
         this.suit = suitString(suit);
     }
 
+    /**
+     * constructor, initializes the card with String parameters
+     * @param rank a card rank, as a String
+     * @param suit a card suit, as a String
+     */
     public Card(String rank, String suit){
         if(strToInt.containsKey(rank)){ // if the rank is a word, as a string
             this.rank = strToInt.get(rank);

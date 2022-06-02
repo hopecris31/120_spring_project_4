@@ -1,30 +1,46 @@
+/**
+ * represents a stud poker hand
+ */
+
 package proj4;
 
 import java.util.ArrayList;
-import java.util.Collections;
 
 
 public class StudPokerHand implements Hand {
 
     public final int TARGET_LENGTH = 5; // the size of desired hand
-
+    public final int STUD_HAND_SIZE = 2;
     public ArrayList<Card> studHand;
     public CommunityCardSet cc;
-    public final int STUD_HAND_SIZE = 2;
     ArrayList<Card> allCards = new ArrayList<>();
 
+    /**
+     * StudPokerHand Constructor
+     * @param cc, a set of community cards
+     * @param cardList, a list of cards for the stud hand
+     */
     public StudPokerHand(CommunityCardSet cc, ArrayList<Card> cardList) {
         ArrayList<Card> cardsCopy = new ArrayList<>(cardList);
         this.studHand = cardsCopy;
         this.cc = cc;
     }
 
+    /**
+     * adds a card to the hand
+     * @param card a card to add
+     */
     public void addCard(Card card) {
         if (this.studHand.size() < STUD_HAND_SIZE) {
             this.studHand.add(card);
         }
     }
 
+    /**
+     * get the card at specified index
+     * @param index an index of a card
+     * @return the index of the card
+     */
     public Card getIthCard(int index) {
         if (index > STUD_HAND_SIZE - 1 || index < 0) {
             return null;
@@ -48,7 +64,7 @@ public class StudPokerHand implements Hand {
         return thisBest.compareTo(otherBest);
     }
 
-    public ArrayList<Card> getAllCards() { //gets all cards to be used in getAllFiveCardHands
+    private ArrayList<Card> getAllCards() { //gets all cards to be used in getAllFiveCardHands
 
         // do this for when an object contains arraylist "unpack"
         allCards.addAll(this.cc.communityCards);
@@ -56,7 +72,7 @@ public class StudPokerHand implements Hand {
         return allCards;
     }
 
-    public static ArrayList<ArrayList<Card>> getAllCombos(ArrayList<Card> allHandCards, int targetLength) {
+    private static ArrayList<ArrayList<Card>> getAllCombos(ArrayList<Card> allHandCards, int targetLength) {
         ArrayList<ArrayList<Card>> allCombos = new ArrayList<>();
 
         if (targetLength == 1) {
@@ -90,7 +106,7 @@ public class StudPokerHand implements Hand {
         return combos;
     }
 
-    public static ArrayList<ArrayList<Card>> makeSingleCombo(ArrayList<Card> cardList) {
+    private static ArrayList<ArrayList<Card>> makeSingleCombo(ArrayList<Card> cardList) {
         ArrayList<ArrayList<Card>> allSingles = new ArrayList<>();
         for (Card card : cardList) {
             ArrayList<Card> singleCombo = new ArrayList<>();
@@ -130,6 +146,9 @@ public class StudPokerHand implements Hand {
         return handCombos;
     }
 
+    public boolean equals(StudPokerHand other){
+
+    }
 
     public String toString(){
         return String.valueOf(this.studHand);

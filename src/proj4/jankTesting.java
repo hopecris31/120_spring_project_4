@@ -45,12 +45,12 @@ public class jankTesting {
         StudPokerHand sph2 = new StudPokerHand(cc, shCardList2);
 
         //testing getAllCards✅
-        ArrayList<Card> allCards = sph1.getAllCards(); //get all cards from both hands
+        //ArrayList<Card> allCards = sph1.getAllCards(); //get all cards from both hands
        // System.out.println(allCards);
 
         //testing getAllCombos✅
-        ArrayList<ArrayList<Card>> allCombos = sph1.getAllCombos(allCards, 5);
-        System.out.println(allCombos);
+        //ArrayList<ArrayList<Card>> allCombos = sph1.getAllCombos(allCards, 5);
+        //System.out.println(allCombos);
 
         //testing singleCombo
 
