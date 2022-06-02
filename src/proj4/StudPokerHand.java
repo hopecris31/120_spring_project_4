@@ -146,8 +146,17 @@ public class StudPokerHand implements Hand {
         return handCombos;
     }
 
-    public boolean equals(StudPokerHand other){
-
+    public boolean equals(StudPokerHand other) {
+        if (other == this) {
+            return true;
+        } else if (other == null) {
+            return false;
+        } else if (!(other instanceof StudPokerHand)) {
+            return false;
+        } else {
+            StudPokerHand otherStudHand = (StudPokerHand) other;
+            return this.studHand == otherStudHand.studHand;
+        }
     }
 
     public String toString(){

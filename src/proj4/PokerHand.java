@@ -262,6 +262,19 @@ public class PokerHand implements Hand{
         return this.compareHighCard(other);
     }
 
+    public boolean equals(PokerHand other) {
+        if (other == this) {
+            return true;
+        } else if (other == null) {
+            return false;
+        } else if (!(other instanceof PokerHand)) {
+            return false;
+        } else {
+            PokerHand otherStudHand = (PokerHand) other;
+            return this.hand == otherStudHand.hand;
+        }
+    }
+
     public String toString(){
         return String.valueOf(this.hand);
     }

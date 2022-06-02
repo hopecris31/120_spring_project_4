@@ -3,6 +3,7 @@
  */
 package proj4;
 import java.util.HashMap;
+import java.util.Objects;
 
 
 public class Card {
@@ -75,6 +76,22 @@ public class Card {
      */
     public String getSuit(){
         return this.suit;
+    }
+
+    public boolean equals(Card other) {
+        if (other == this) {
+            return true;
+        }
+        else if (other == null) {
+            return false;
+        }
+        else if (!(other instanceof Card)) {
+            return false;
+        }
+        else {
+            Card otherCard = (Card) other;
+            return this.rank == otherCard.rank && Objects.equals(this.suit, otherCard.suit);
+        }
     }
 
     /**

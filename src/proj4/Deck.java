@@ -106,6 +106,22 @@ public class Deck {
         this.nextToDeal = 0;
     }
 
+    public boolean equals(Deck other) {
+        if (other == this) {
+            return true;
+        }
+        else if (other == null) {
+            return false;
+        }
+        else if (!(other instanceof Deck)) {
+            return false;
+        }
+        else {
+            Deck otherDeck = (Deck) other;
+            return this.deck == otherDeck.deck;
+        }
+    }
+
     public String toString(){ //sublist of undealt cards
         return String.valueOf(this.deck.subList(nextToDeal, deck.size()));
     }
