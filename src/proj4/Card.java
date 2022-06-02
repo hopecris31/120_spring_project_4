@@ -30,20 +30,16 @@ public class Card {
         this.suit = suit;
     }
 
-    public HashMap<String, Integer> textToNumber (){
+    private HashMap<String, Integer> textToNumber (){
         String[] textNumbers = {"two", "three", "four", "five", "six", "seven", "eight", "nine", "ten", "Jack", "Queen", "King", "Ace"};
-        HashMap<String, Integer> textToIntRank = new HashMap<String, Integer>();
+        HashMap<String, Integer> textToIntRank = new HashMap<>();
         for(int i = 0; i < textNumbers.length; i++){
             textToIntRank.put(textNumbers[i], i+2);
         }
         return textToIntRank;
     }
 
-    public int strToInt(String number){
-        return(strToInt.get(number));
-    }
-
-    public static String suitString(int suit){
+    private static String suitString(int suit){
         String suitString;
         if(suit == 0){
             suitString = "Spades";
@@ -59,10 +55,6 @@ public class Card {
         }
         return suitString;
     }
-//make array of int words and corresponding array of ints, get index of word, then return corresponding int in other list
-    //or could make a hashmap (dictionary)
-
-//for testing: make new string array with all cards as string,
 
     /**
      * returns the rank of the card
@@ -85,7 +77,6 @@ public class Card {
      */
     public String toString(){
         String rankString = String.valueOf(getRank());
-        //rank = getRank();
         if(rankString.equals("11")){
             rankString = "Jack";
         }

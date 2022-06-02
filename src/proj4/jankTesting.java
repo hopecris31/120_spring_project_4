@@ -57,7 +57,6 @@ public class jankTesting {
 
         int answer = sph1.compareTo(sph2);
         System.out.println(answer);
-        System.out.println((cc4.textToNumber()));
 
     }
 

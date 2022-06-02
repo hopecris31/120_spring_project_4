@@ -27,25 +27,29 @@ public class main {
      * plays the game
      */
     public static void playGame() {
-        final int HAND_SIZE = 5;
-        final int STUD_HAND_SIZE = 7;
+        final int COMMUNITY_CARD_SIZE = 5;
+        final int HAND_SIZE = 2;
         int correctGuesses = 0;
         boolean game = true;
 
         Deck deck = new Deck();
         deck.shuffle();
+        ArrayList<Card> communityCardList = getHandCards(COMMUNITY_CARD_SIZE, deck);
+        CommunityCardSet communityCards = new CommunityCardSet(communityCardList);
 
         System.out.println("ENTER 1 IF HAND 1 IS BETTER😤,  2 IF HAND 2 IS BETTER🤩, OR 0 IF ITS A TIE😱");
 
         while(game && deck.enoughInDeck(HAND_SIZE)){
 
-            ArrayList<Card> cardList1 = getHandCards(STUD_HAND_SIZE, deck);
-            ArrayList<Card> cardList2 = getHandCards(STUD_HAND_SIZE, deck);
+            ArrayList<Card> cardList1 = getHandCards(HAND_SIZE, deck);
+            ArrayList<Card> cardList2 = getHandCards(HAND_SIZE, deck);
 
-            PokerHand hand1 = new PokerHand(cardList1);
-            PokerHand hand2 = new PokerHand(cardList2);
+            StudPokerHand hand1 = new StudPokerHand(communityCards, cardList1);
+            StudPokerHand hand2 = new StudPokerHand(communityCards, cardList2);
+
 
             System.out.println(" ");
+            System.out.println("😩Community Cards: " + communityCards);
             System.out.println("🥵HAND 1: "+ hand1);
             System.out.println("🥶HAND 2: "+ hand2);
             System.out.println(" ");
