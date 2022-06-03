@@ -54,10 +54,13 @@ public class StudPokerHandTesting {
         ArrayList<Card> sh5cards = makeStudHand(studHandList5);
         StudPokerHand sh5 = new StudPokerHand(cc1, sh5cards);
 
-        String[] communityCardList2 = {"2", "Spades", "3", "Spades", "4", "Spades", "6", "Spades", "6", "Spades"};
+        String[] communityCardList2 = {"14", "Spades", "13", "Spades", "4", "Spades", "6", "Spades", "5", "Spades"};
         CommunityCardSet cc2 = makeCommunityHand(communityCardList2);
-        String[] studHandList7 = {"7", "Spades", "8", "Spades"};
+        String[] studHandList7 = {"14", "Spades", "14", "Spades"};
         ArrayList<Card> sh7cards = makeStudHand(studHandList7);
+        String[] studHandList6 = {"7", "Spades", "8", "Spades"};
+        ArrayList<Card> sh6cards = makeStudHand(studHandList6);
+        StudPokerHand sh6 = new StudPokerHand(cc2, sh6cards);
         StudPokerHand sh7 = new StudPokerHand(cc2, sh7cards);
 
 
@@ -65,6 +68,7 @@ public class StudPokerHandTesting {
         Testing.assertEquals("testing compareTo, one has pair", 1, sh1.compareTo(sh3));
         Testing.assertEquals("testing compareTo, both pair, so test high card", 1, sh3.compareTo(sh4));
         Testing.assertEquals("testing compareTo, one pair, one high card", 1, sh4.compareTo(sh5));
+        Testing.assertEquals("testing compareTo, one pair, one high card", -1, sh6.compareTo(sh7));
 
 
         Card cardToAdd = new Card("14", "Hearts");
