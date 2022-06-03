@@ -165,7 +165,8 @@ public class StudPokerHand implements Hand {
     }
 
     public String toString(){
-        return String.valueOf(this.studHand);
+        String shString = String.valueOf(this.studHand);
+        return shString;
     }
 
 }

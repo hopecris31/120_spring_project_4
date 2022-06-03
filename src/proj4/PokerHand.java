@@ -10,6 +10,11 @@ import java.util.Objects;
 
 public class PokerHand implements Hand{
 
+    public final int FLUSH_VALUE = 4;
+    public final int TWO_PAIR_VALUE = 3;
+    public final int PAIR_VALUE = 2;
+    public final int HIGH_CARD_VALUE = 1;
+
     public final int HAND_SIZE = 5;
     public ArrayList<Card> hand;
 
@@ -221,22 +226,22 @@ public class PokerHand implements Hand{
      */
     private int handTypeWorth(){
         if(this.isFlush()){
-            return 4;
+            return FLUSH_VALUE;
         }
         if(this.isFourKind()){
-            return 3;
+            return TWO_PAIR_VALUE;
         }
         else if(this.isTwoPair()){
-            return 3;
+            return TWO_PAIR_VALUE;
         }
         else if(this.isThreeKind()){
-            return 2;
+            return PAIR_VALUE;
         }
         else if(this.isPair()){
-            return 2;
+            return PAIR_VALUE;
         }
         else{
-            return 1;
+            return HIGH_CARD_VALUE;
         }
     }
 
