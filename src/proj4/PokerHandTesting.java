@@ -1,9 +1,8 @@
 /**
- * Unit testing, tests the compareTo method
+ * Unit testing, tests public methods in the PokerHand Class
  */
 package proj4;
 
-import javax.crypto.spec.PSource;
 import java.util.ArrayList;
 
 //make helper that does this, make new list for ech separate hand
@@ -15,7 +14,7 @@ import java.util.ArrayList;
 
 public class PokerHandTesting {
 
-    public static PokerHand makeHandFromArray(String[] ranksAndSuits) {
+    private static PokerHand makeHandFromArray(String[] ranksAndSuits) {
         ArrayList<Card> handCards = new ArrayList<>();
         for (int i = 0; i < ranksAndSuits.length; i += 2){
                 Card card = new Card(ranksAndSuits[i], ranksAndSuits[i+1]);

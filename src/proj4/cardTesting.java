@@ -1,5 +1,8 @@
-package proj4;
+/**
+ * unit testing, tests all public methods in the Card Class
+ */
 
+package proj4;
 public class cardTesting {
     public static void main(String[] args) {
         Testing testSuite = new Testing();

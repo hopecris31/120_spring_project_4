@@ -1,5 +1,8 @@
-package proj4;
+/**
+ * unit testing, tests all public methods in the Deck class
+ */
 
+package proj4;
 public class deckTesting {
     public static void main(String[] args) {
         Testing testSuite = new Testing();
