@@ -64,6 +64,10 @@ public class StudPokerHand implements Hand {
         return thisBest.compareTo(otherBest);
     }
 
+    /**
+     * adds all the community cards and stud hand cards into one list
+     * @return ArrayList of all cards
+     */
     private ArrayList<Card> getAllCards() { //gets all cards to be used in getAllFiveCardHands
 
         // do this for when an object contains arraylist "unpack"
@@ -72,6 +76,12 @@ public class StudPokerHand implements Hand {
         return allCards;
     }
 
+    /**
+     * gets all combinations from a list of cards
+     * @param allHandCards the cards of which combinations are to be made from
+     * @param targetLength the length of the combination to be made
+     * @return an ArrayList containing every possible combination, each combo represented as an ArrayList
+     */
     private static ArrayList<ArrayList<Card>> getAllCombos(ArrayList<Card> allHandCards, int targetLength) {
         ArrayList<ArrayList<Card>> allCombos = new ArrayList<>();
 
@@ -94,10 +104,23 @@ public class StudPokerHand implements Hand {
         return allCombos;
     }
 
+    /**
+     * gets all combinations from a given list
+     * @param rest the rest of a list, missing the first element
+     * @param targetLength the length of the combination to be made
+     * @returnan ArrayList containing every possible combination, each combo represented as an ArrayList
+     */
     private static ArrayList<ArrayList<Card>> getCombosWithoutFirst(ArrayList<Card> rest, int targetLength) {
         return getAllCombos(rest, targetLength);
     }
 
+    /**
+     * gets all combinations of a list, then adds cardToAdd to all combinations
+     * @param rest the rest of a list, not containing the first element (this is the cardToAdd)
+     * @param targetLength the length of the combination to be made
+     * @param cardToAdd card to add to all combos after combos have been made
+     * @return ArrayList containing every possible combination, each combo represented as an ArrayList
+     */
     private static ArrayList<ArrayList<Card>> getCombosWithFirst(ArrayList<Card> rest, int targetLength, Card cardToAdd) {
         ArrayList<ArrayList<Card>> combos = getAllCombos(rest, targetLength - 1); // recursive call
         for (ArrayList<Card> combo : combos) {
@@ -106,6 +129,11 @@ public class StudPokerHand implements Hand {
         return combos;
     }
 
+    /**
+     * Makes a combination of size 1, containing a single card
+     * @param cardList a list of cards
+     * @return ArrayList containing every combination, each combo represented as an ArrayList containing a single card
+     */
     private static ArrayList<ArrayList<Card>> makeSingleCombo(ArrayList<Card> cardList) {
         ArrayList<ArrayList<Card>> allSingles = new ArrayList<>();
         for (Card card : cardList) {
@@ -116,11 +144,20 @@ public class StudPokerHand implements Hand {
         return allSingles;
 }
 
+    /**
+     * makes a single combination of the size of the list, all cards in the list are a single combo
+     * @param allHandCards a list containing cards
+     * @return ArrayList containing the single combination, the combo represented as an ArrayList containing all hand cards
+     */
     private static ArrayList<Card> makeOwnCombo(ArrayList<Card> allHandCards){
         return new ArrayList<>(allHandCards);
     }
 
 
+    /**
+     * Given all of the possible hands from stud and community cards, returns the best possible hand
+     * @return the best possible poker hand possible from all cards
+     */
     private PokerHand getBestFiveCardHand()
     {
         ArrayList<PokerHand> hands = getAllFiveCardHands();
@@ -134,6 +171,10 @@ public class StudPokerHand implements Hand {
         return bestSoFar;
     }
 
+    /**
+     * given all of the community cards and stud hand cards, creates every possible 5 card hand
+     * @return a list of all the possible poker hands
+     */
     private ArrayList<PokerHand> getAllFiveCardHands(){
         ArrayList<Card> allCards = getAllCards();
         ArrayList<ArrayList<Card>> allCombos = getAllCombos(allCards, TARGET_LENGTH);
