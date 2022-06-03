@@ -73,7 +73,7 @@ public class Deck {
      * @return True if deck is empty, False if not
      */
     public boolean isEmpty(){
-        return this.nextToDeal != this.deck.size();
+        return this.nextToDeal == this.deck.size();
     }
 
 
