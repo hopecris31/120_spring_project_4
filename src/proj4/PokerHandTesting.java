@@ -17,7 +17,7 @@ public class PokerHandTesting {
 
     public static PokerHand makeHandFromArray(String[] ranksAndSuits) {
         ArrayList<Card> handCards = new ArrayList<>();
-        for (int i = 0; i < 10; i += 2){
+        for (int i = 0; i < ranksAndSuits.length; i += 2){
                 Card card = new Card(ranksAndSuits[i], ranksAndSuits[i+1]);
                 handCards.add(card);
             }
@@ -53,7 +53,8 @@ public class PokerHandTesting {
         PokerHand highCard1 = makeHandFromArray(highCard1List);
         String[] highCard2List = {"2", "Hearts", "3", "Spades", "4", "Diamonds", "5", "Hearts", "14", "Hearts"};
         PokerHand highCard2 = makeHandFromArray(highCard2List);
-
+        String[] addCardList = {"2", "Hearts", "3", "Spades", "4", "Diamonds", "5", "Hearts"};
+        PokerHand addCardHand = makeHandFromArray(addCardList);
 
         Testing.assertEquals("testing flush to flush, one with higher high card", -1, flush1.compareTo(flush2));
         Testing.assertEquals("testing flush to flush, both same exact ranks", 0, flush1.compareTo(flush1));
@@ -64,5 +65,9 @@ public class PokerHandTesting {
         Testing.assertEquals("testing two pairs, one with higher high card", -1, pair1.compareTo(pair3));
         Testing.assertEquals("testing two pairs, all exact same ranks", 0, pair1.compareTo(pair1));
         Testing.assertEquals("testing high card", -1, highCard1.compareTo(highCard2));
+        Card cardToAdd = new Card("5", "Hearts");
+        addCardHand.addCard(cardToAdd);
+        Testing.assertEquals("testing addCard, adding a card to a 4 card hand", cardToAdd, addCardHand.getIthCard(4));
+        Testing.assertEquals("testing getIthCard", cardToAdd, addCardHand.getIthCard(4));
     }
 }
