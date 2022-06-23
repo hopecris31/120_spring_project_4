@@ -1,12 +1,11 @@
 /**
  * represents a poker hand object
  */
-package proj4; // do not erase. Gradescope expects this.
+package proj4;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.Objects;
-
 
 
 public class PokerHand implements Hand{
