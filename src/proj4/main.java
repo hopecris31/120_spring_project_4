@@ -8,6 +8,7 @@ import java.util.Scanner;
 
 public class main {
 
+
     /**
      * creates the list of cards for a hand
      * @param handSize number of cards per hand

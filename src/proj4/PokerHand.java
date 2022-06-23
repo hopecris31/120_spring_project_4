@@ -8,6 +8,7 @@ import java.util.Comparator;
 import java.util.Objects;
 
 
+
 public class PokerHand implements Hand{
 
     public final int FLUSH_VALUE = 4;
@@ -16,7 +17,7 @@ public class PokerHand implements Hand{
     public final int HIGH_CARD_VALUE = 1;
 
     public final int HAND_SIZE = 5;
-    public ArrayList<Card> hand;
+    private ArrayList<Card> hand;
 
     /**
      * Poker Hand constructor
@@ -135,25 +136,6 @@ public class PokerHand implements Hand{
     }
 
     /**
-     * determines the type of hand
-     * @return the type of hand the given hand is
-     */
-    private String getHandType(){
-        if(this.isFlush()){
-            return "Flush";}
-        if(this.isTwoPair()){
-            return "Two Pair";}
-        if(this.isFourKind()){
-            return "Two Pair";}
-        if(this.isThreeKind()){
-            return "Pair";}
-        if(this.isPair()){
-            return "Pair";}
-        else{
-            return "High Card";}
-    }
-
-    /**
      * gets the pairs in a given hand
      * @return a list of the pair ranks in a hand (one int per pair)
      */
@@ -255,16 +237,18 @@ public class PokerHand implements Hand{
      *  MORE than other
      */
     public int compareTo(PokerHand other){
-        if(this.handTypeWorth() > other.handTypeWorth()){
+        int selfTypeWorth = this.handTypeWorth();
+        int otherTypeWorth = other.handTypeWorth();
+
+        if(selfTypeWorth > otherTypeWorth){
             return 1;
         }
-        else if(this.handTypeWorth() < other.handTypeWorth()){
+        else if(selfTypeWorth < otherTypeWorth){
             return -1;
         }
-        if(this.handTypeWorth() == other.handTypeWorth()){
+        else{
             return this.compareHandSameType(other);
         }
-        return this.compareHighCard(other);
     }
 
     /**
@@ -284,7 +268,6 @@ public class PokerHand implements Hand{
             return this.hand == otherStudHand.hand;
         }
     }
-
 
     public String toString(){
         return String.valueOf(this.hand);

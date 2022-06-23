@@ -11,8 +11,8 @@ public class StudPokerHand implements Hand {
 
     public final int TARGET_LENGTH = 5; // the size of desired hand
     public final int STUD_HAND_SIZE = 2;
-    public ArrayList<Card> studHand;
-    public CommunityCardSet cc;
+    private ArrayList<Card> studHand;
+    private CommunityCardSet cc;
     ArrayList<Card> allCards = new ArrayList<>();
 
     /**
@@ -84,16 +84,15 @@ public class StudPokerHand implements Hand {
      */
     private static ArrayList<ArrayList<Card>> getAllCombos(ArrayList<Card> allHandCards, int targetLength) {
         ArrayList<ArrayList<Card>> allCombos = new ArrayList<>();
-
         if (targetLength == 1) {
             ArrayList<ArrayList<Card>>singleCombos = makeSingleCombo(allHandCards);
             allCombos.addAll(singleCombos);
             }
-            //makes a combo of size 1
-        else if (targetLength == allHandCards.size()) { // makes a combo of size target length
+        else if (targetLength == allHandCards.size()) {
             ArrayList<Card> ownCombo = makeOwnCombo(allHandCards);
             allCombos.add(ownCombo);
-        } else {
+            }
+        else {
             Card firstCard = allHandCards.get(0);
             ArrayList<Card> rest = new ArrayList<>(allHandCards.subList(1, allHandCards.size()));
             ArrayList<ArrayList<Card>> combosWithFirst = getCombosWithFirst(rest, targetLength, firstCard);
@@ -205,6 +204,7 @@ public class StudPokerHand implements Hand {
         }
     }
 
+    @Override
     public String toString(){
         String shString = String.valueOf(this.studHand);
         return shString;

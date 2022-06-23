@@ -2,6 +2,8 @@
  * represents a card object
  */
 package proj4;
+import javax.swing.*;
+import java.awt.*;
 import java.util.HashMap;
 import java.util.Objects;
 
@@ -10,7 +12,7 @@ public class Card {
 
     private int rank;
     private String suit;
-    HashMap<String, Integer> strToInt = textToNumber();
+    private HashMap<String, Integer> strToInt = textToNumber();
 
 
     /**
@@ -120,4 +122,5 @@ public class Card {
         }
         return rankString + " of "  + getSuit();
     }
+
 }

@@ -17,7 +17,6 @@ public class CommunityCardSet implements Hand{
      */
     public CommunityCardSet(ArrayList<Card> cardList) {
         this.communityCards = new ArrayList<>(cardList);
-
     }
 
     /**
